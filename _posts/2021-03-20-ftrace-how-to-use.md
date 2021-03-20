@@ -9,7 +9,9 @@ title: "About ftrace"
 리눅스 커널 개발자에게 커널 내부에서 어떤 함수가 불렸는지, 어떤 이벤트가 발생했는지 알려주는 트레이스 기능이다.
 예를 들어, 목표 커널 함수[^1]가 불릴 때 콜스택을 확인할 수 있다.
 콜스택을 확인함으로써 목표 커널 함수가 어떤 함수에 의해 불리는지 확인할 수 있다. (커널 공부에 좋을듯)
+
 ***
+
 ## ftrace 사용법
 ### 1. 트레이스 포인트 지정하기
 임의의 커널 함수 foo()에 진입 할 때의, 콜스택을을 확인하고 싶은 경우 아래와 같은 명령어를 입력한다.
@@ -100,7 +102,9 @@ $ echo 1 > /sys/kernel/debug/tracing/tracing_on # trace on
 또한 `sched_switch`에 의해 발생한 트레이스는 `kworker(pid: 3871)`로부터 다른 `kworker(pid: 4010)`으로 컨텍스트 스위칭이 일어났다는것을 알 수 있다.
 그 외에도 정말 많은 커널 이벤트들을 트레이스로 뽑을 수 있다.
 뽑을 수 있는 기 정의된 이벤트들은 `/sys/kernel/debug/tracing/events/`를 보면 알 수 있다.
+
 ***
+
 ## ftrace의 event는 어떻게 발생되어 기록되는가?
 모든 이벤트 트레이스는 `trace_ + event_name` 함수를 호출하여 기록된다.
 예를 들어, `irq_handler_entry`는 `trace_irq_handler_entry` 함수를 이용하여 트레이스가 기록된다.
@@ -172,7 +176,11 @@ kworker/u8:1-3871  [003] d... 33794.390123: sched_switch: prev_comm=kworker/u8:1
 ```
 위에서는 `prev_state=S`이므로, `TASK_INTERRUPTIBLE` 상태임을 알 수 있다.
 
+***
+
 >**본 글은 "디버깅을 통해 배우는 리눅스 커널의 구조와 원리"를 참조하였습니다.**
+
+***
 
 [^1]: trace가 가능한 커널 함수는 /sys/kernel/debug/tracing/available_tracers로 확인할 수 있다. 그 외의 함수를 트레이싱 하려고 하면 시스템이 다운될 수 있다.
 [^2]: `secondary_start_kernel` 함수는 부트 시퀀스에서 CPU 0가 아닌 다른 CPU를 부팅할 때 쓰는 함수이며, 부팅 이후는 절대 부를 일이 없는 함수이다.
