@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "About ftrace"
+tags: [linux, kernel, tool, debug]
 ---
 
 #About ftrace
@@ -66,7 +67,7 @@ cat-2834  [003] d...  7890.883574: <stack trace>
 
 `d`: interrupt disabled (현재 컨텍스트에서의 인터럽트 허용 플래그와 같다.)
 
-`n`: 'N' both TIF_NEED_RESCHED & PREEMPT_NEED_RESCHED 'n' for TIF_NEED_RESCHED p for 'PREEMPT_NEED_RESCHED'[^3]
+`n`: need resched ([TIF_NEED_RESCHED, PREEMPT_NEED_RESCHED](https://yongshikmoon.github.io/2021/03/20/ftrace-how-to-use.html) 플래그 상황에 따라 다르다.)
 
 `h/s`: interrupt context or softIRQ context
 
@@ -74,7 +75,8 @@ cat-2834  [003] d...  7890.883574: <stack trace>
 
 `thread_info`의 `preempt_count`의 각 필드를 참조하여 출력하는 것으로 추정된다.
 
-![lwn.net](https://static.lwn.net/images/2020/preempt-count.svg)[^4]
+![lwn.net](https://static.lwn.net/images/2020/preempt-count.svg)
+[^3]
 
 그 외적으로 특이한 부분은 없는 것 같다.
 
@@ -184,5 +186,4 @@ kworker/u8:1-3871  [003] d... 33794.390123: sched_switch: prev_comm=kworker/u8:1
 
 [^1]: trace가 가능한 커널 함수는 /sys/kernel/debug/tracing/available_tracers로 확인할 수 있다. 그 외의 함수를 트레이싱 하려고 하면 시스템이 다운될 수 있다.
 [^2]: `secondary_start_kernel` 함수는 부트 시퀀스에서 CPU 0가 아닌 다른 CPU를 부팅할 때 쓰는 함수이며, 부팅 이후는 절대 부를 일이 없는 함수이다.
-[^3]: 정확하지는 않으나, TIF_NEED_RESCHED가 세팅된 후, PREEMPT_NEED_RESHCED로 전파되어 실제 reschedule 발생시에는 PREEMPT_NEED_RESCHED를 참조한다.. 라고 쓰여있으나, 코드내에서는 직접적으로 참조하는 부분은 없는것 같다.. 발견하면 수정 예정
-[^4]: [Four short stories about preempt_count()](https://lwn.net/Articles/831678/)
+[^3]: [Four short stories about preempt_count()](https://lwn.net/Articles/831678/)
