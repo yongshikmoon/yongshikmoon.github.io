@@ -67,7 +67,7 @@ cat-2834  [003] d...  7890.883574: <stack trace>
 
 `d`: interrupt disabled (현재 컨텍스트에서의 인터럽트 허용 플래그와 같다.)
 
-`n`: need resched ([TIF_NEED_RESCHED, PREEMPT_NEED_RESCHED](https://yongshikmoon.github.io/2021/03/20/ftrace-how-to-use.html) 플래그 상황에 따라 다르다.)
+`n`: need resched ([TIF_NEED_RESCHED, PREEMPT_NEED_RESCHED](https://yongshikmoon.github.io/2021/03/21/about-preempt_count.html) 플래그 상황에 따라 다르다.)
 
 `h/s`: interrupt context or softIRQ context
 
