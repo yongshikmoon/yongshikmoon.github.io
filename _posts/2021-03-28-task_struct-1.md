@@ -5,11 +5,11 @@ tags: [linux, kernel, task]
 ---
 # task_struct
 
+***
 ## state
-`state` 필드는 task의 실행 상태를 나타내며, `exit_state`는 task의 종료 상태를 나타낸다.
+`state` 필드는 task의 실행 상태를 나타내며, `exit_state`[^0]는 task의 종료 상태를 나타낸다.
 사실 `state`와 `exit_state`는 하나의 필드로 합쳐져있는것으로 보이나[^2], 실수를 줄이기 위해 실행 상태와 종료 상태를 분리한것으로 보인다. 
 
-***
 
 ### task의 실행 상태 (state)
 태스크의 실행 상태는 다음의 값을 가질 수 있다. (kernel 4.19 기준) 
@@ -46,6 +46,9 @@ tags: [linux, kernel, task]
 11. `TASK_NEW`
     * 태스크가 새롭게 생성되고 있음을 의미한다. `wake_up_new_task()`에서 `TASK_RUNNING`을 할당 받기 전, `copy_process()`의 `sched_fork()` 함수에서 세팅되는 상태이며, **절대 실행되지 않고, 시그널 핸들링도 처리하지 않고, 런큐에 들어갈 수도 없는** 상태를 담보한다.
 
+***
+
+[^0]: https://yongshikmoon.github.io/2021/03/29/task_struct-2.html
 [^1]: https://en.wikipedia.org/wiki/Thread_control_block
 [^2]: 실제로 state와 exit_state는 비트 플래그가 겹치는 부분이 없다. 즉, 서로 상호배타적인 비트플래그를 갖는다.
 [^3]: RESTARTSYS라는 의미를 알 수 있듯이, syscall을 restart하라는 말이다. 다시 말하면 signal handling을 한 후, syscall을 restart하여 `wait_event_interruptible()`을 재실행하라는 의미이며, 이 때문에 syscall은 reenterancy가 있어야 한다라고 말한다.
