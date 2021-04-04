@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://yongshikmoon.github.io/sitemap.xml
+Sitemap: https://yongshikmoon.github.io/sitemap.xml
