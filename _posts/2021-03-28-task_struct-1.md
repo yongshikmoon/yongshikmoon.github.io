@@ -7,13 +7,13 @@ tags: [linux, kernel, task]
 
 ***
 ## state
-`state` 필드는 task의 실행 상태를 나타내며, `exit_state`[^0]는 task의 종료 상태를 나타낸다.
-사실 `state`와 `exit_state`는 하나의 필드로 합쳐져있는것으로 보이나[^2], 실수를 줄이기 위해 실행 상태와 종료 상태를 분리한것으로 보인다. 
+`state` 필드는 task의 실행 상태를 나타내며, `exit_state`[^0]는 task의 종료 상태를 나타낸다.  
+사실 `state`와 `exit_state`는 하나의 필드로 합쳐져있는것으로 보이나[^2], 실수를 줄이기 위해 실행 상태와 종료 상태를 분리한것으로 보인다.  
 
 
 ### task의 실행 상태 (state)
-태스크의 실행 상태는 다음의 값을 가질 수 있다. (kernel 4.19 기준) 
-이 때, 4, 5, 6, 7은 speical task state로 불린다.
+태스크의 실행 상태는 다음의 값을 가질 수 있다. (kernel 4.19 기준)   
+이 때, 4, 5, 6, 7은 speical task state로 불린다.  
 1. `TASK_RUNNING`
     * task가 정상적으로 실행되고 있을 때를 뜻한다. 실행이라 함은 CPU에서 직접 실행하고 있는 중, 그리고 런큐에서 CPU를 받기 위해 대기하는 중을 포함한다.
 2. `TASK_INTERRUPTIBLE`
