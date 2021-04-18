@@ -73,7 +73,7 @@ unsigned long vaddr = vm_area_struct->vm_start + page_offset
 문제는 `vm_area_struct`는 프로세스의 개수, 그리고 프로세스 내 매핑에 따라 여러개가 존재한다.   
 여러 `vm_area_struct`가 존재하므로 이를 묶어서 관리해야 한다.    
 묶어서 관리하는 구조체를 `anon_vma`라 하자.  
-<img src='../_images/notes_rmap.png'>[^3]  
+![](https://user-images.githubusercontent.com/41955137/115137872-8c3dd100-a063-11eb-842a-fa29c89c3933.png)[^3]  
 
 다음과 같이 `anon_vma`가 여러 `vm_area_struct`를 들고 있고, 이를 이용해 virtual address를 구한다.  
 virtual address를 `mm_struct`에 있는 page table을 이용하여 PTE를 구하게 된다.  
