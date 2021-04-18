@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "About kobject"
+title: "About anonymous page"
 tags: [linux, kernel, Memory]
 ---
 Reference: https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html
